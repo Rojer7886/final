@@ -1,0 +1,48 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+    <h1><%= @restaurant[:name] %></h1>
+    <a class="lemon--a__373c0__IEZFH button__373c0__3yl_n small__373c0__1sSnK secondary-alternate__373c0__2F_Fl" style="--mousedown-x:69px; --mousedown-y:21px; --button-width:124.438px;" href="/restaurants/<%= @restaurant[:id] %>/writeareview/new"><span class="lemon--span__373c0__3997G text__373c0__2pB8f text-color--inherit__373c0__w_15m text-align--center__373c0__2vkq2 text-size--inherit__373c0__2gFQ3"><span class="lemon--span__373c0__3997G icon__373c0__1FVT1 icon--18-star icon--currentColor__373c0__1qnXQ" aria-hidden="true" style="width:18px;height:18px"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" class="icon_svg"><path d="M8.94 1l2.373 5.387 5.187.758-3.75 3.67.928 5.077-4.737-2.907L4.367 16l.885-5.186-3.75-3.67 5.187-.757L8.94 1z"></path></svg></span> <!-- -->Write a Review</span></a>
+    <p>Score: <%= @average %>  </p>
+    <p>Descriptiion: <%= @restaurant[:description] %></p>
+    
+
+    <% if @current_user %>
+        <form action="/users/create" method="post">
+            <h3>Make a reservation!</h3>
+            <label>Date:</label>
+            <input type="text" class="form-control" name="date">
+            <label>Time:</label>
+            <input type="text" class="form-control" name="Time">
+            <label>Number of people:</label>
+            <input type="text" class="form-control" name="#people">
+            <label>Comments:</label>
+            <input type="text" class="form-control" name="Comments">
+            <button type="submit" class="btn btn-primary">Confirm!</button>
+        </form>
+    <% else %>
+        <a href="/logins/new" class="btn btn-danger">Please sign in to RSVP</a>
+    <% end %>
+
+    </div>
+
+
+
+    <div class="col-4">
+        <h3>Contact Details</h3>
+        <p><a href="<%= @restaurant[:website] %>">Visit the Website</a></p>
+        <p>Contact: <%= @restaurant[:contact] %></p>
+        <p>Address: <%= @restaurant[:address] %></p>
+
+        <iframe
+        width="350"
+        height="275"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=<%=@google%>
+          &q=<%= @lat_long %>&zoom=12" allowfullscreen>
+        </iframe>
+    </div>
+  </div>
+</div>
