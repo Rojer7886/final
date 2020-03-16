@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-8">
         <h1><%= @restaurant[:name] %></h1>
+        <% if @current_user %>
         <p>Select your rating</p>
 
     <form action="/restaurants/<%= @restaurant[:id] %>/writeareview/create" method="post">
@@ -41,6 +42,9 @@
         <div class="lemon--div__369bf__1mboc alert-encouragement-wrapper__369bf__1CSup border-color--default__369bf__2oFDT"><span><p class="lemon--p__369bf__3Qnnj text__369bf__2pB8f text-color--normal__369bf__K_MKN text-align--left__369bf__2pnx_"></p></span><div class="lemon--div__369bf__1mboc border-color--default__369bf__2oFDT"></div></div>
         <div class="lemon--div__369bf__1mboc display--inline-block__369bf__2de_K u-space-t4 u-padding-b6 border-color--default__369bf__2oFDT"><div class="lemon--div__369bf__1mboc writeareview-footer__369bf__3MoE6 border-color--default__369bf__2oFDT"><button class="button__369bf__3yl_n large__369bf__3YTD9 primary__369bf__oJujF post-button__369bf__86qmS" type="submit" value="submit" style="--mousedown-x:0px; --mousedown-y:0px; --button-width:0px;"><span class="lemon--span__369bf__3997G text__369bf__2pB8f text-color--inherit__369bf__w_15m text-align--center__369bf__2vkq2 text-size--inherit__369bf__2gFQ3"><span class="lemon--span__369bf__3997G display--inline__369bf__1DbOG border-color--default__369bf__2oFDT"><span class="lemon--span__369bf__3997G post-button-text__369bf__1cqOs display--inline__369bf__1DbOG border-color--default__369bf__2oFDT">Post Review</span></span></span></button></div></div>
     </form>
+        <% else %>
+        <a href="/logins/new" class="btn btn-danger">Please sign in to write a review</a>
+    <% end %>
     </div>
 </div>
 

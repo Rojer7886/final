@@ -10,7 +10,7 @@
     
 
     <% if @current_user %>
-        <form action="/users/create" method="post">
+        <form action="/restaurants/<%= @restaurant[:id] %>/rsvps/create" method="post">
             <h3>Make a reservation!</h3>
             <label>Date:</label>
             <input type="text" class="form-control" name="date">

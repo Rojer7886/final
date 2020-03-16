@@ -41,6 +41,8 @@ end
 
 # Insert initial (seed) data
 restaurants_table = DB.from(:restaurants)
+users_table = DB.from(:users)
+reviews_table = DB.from(:reviews)
 
 restaurants_table.insert(name: "Peppercorns", 
                     description: "Peppercorns Kitchen is a chef-driven contemporary Chinese restaurant located at Evanston, IL. Our mission is to deliver a brand-new culinary experience mixing authentic Szechuan cuisine and creative American-Chinese fusion.",
@@ -58,4 +60,16 @@ Aptly named “Red Hot Chilli Pepper”, we take inspiration from the vibrant fl
                     website: "http://rhcponline.com/",
                     lat: "42.046023",
                     long: "-87.678719")
+
+reviews_table.insert(restaurant_id: "1",
+                    user_id: "1",
+                    scores: "4",
+                    comments: "very cool!")
+
+reviews_table.insert(restaurant_id: "2",
+                    user_id: "1",
+                    scores: "3",
+                    comments: "I like it!")
+
+
 

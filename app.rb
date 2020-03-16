@@ -39,7 +39,7 @@ get "/restaurants/:id" do
     # @users_table = users_table
     @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
     @review = reviews_table.where(restaurant_id: @restaurant[:id]).to_a
-    @average = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:scores)
+    @average = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:scores).round(2)
     @lat_long = "#{@restaurant[:lat]},#{@restaurant[:long]}"
     @google = ENV["GoogleAPI"]
     view "restaurant"
@@ -60,14 +60,15 @@ post "/restaurants/:id/rsvps/create" do
         comments: params["comments"]
     )
 
-    accout_sid = ENV["TWILIO_ACCOUNT_SID"]
+    account_sid = ENV["TWILIO_ACCOUNT_SID"]
     auth_token = ENV["TWILIO_AUTH"]
     client = Twilio::REST::Client.new(account_sid, auth_token)
+    puts "account_sid IS #{account_sid} AND auth_token IS #{auth_token}"
 
     client.messages.create(
     from: "+12056515499", 
     to: @current_user[:phone_number],
-    body: "Your booking details:"
+    body: "You successful book at a table at #{@restaurant[:name]} on #{@restaurant[:date]}"
     )
 
     redirect "/restaurants/#{@restaurant[:id]}"
